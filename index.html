@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <script> // scripts.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Button click alert
+    const contactSection = document.getElementById('contact');
+    const button = contactSection.querySelector('button');
+    button.addEventListener('click', function() {
+        alert('Thanks for clicking! Feel free to contact me.');
+    });
+
+    // Animated text effect for portfolio items
+    const portfolioSection = document.getElementById('portfolio');
+    const portfolioItems = portfolioSection.querySelectorAll('img');
+    portfolioItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.style.transform = 'scale(1.2) rotate(10deg)';
+            item.style.transition = 'transform 0.3s';
+        });
+        item.addEventListener('mouseout', () => {
+            item.style.transform = 'scale(1) rotate(0deg)';
+        });
+    });
+
+    // Scroll-based animation for sections
+    const sections = document.querySelectorAll('section');
+    const options = {
+        root: null,
+        threshold: 0.1,
+        rootMargin: "0px"
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Typewriter effect for home section
+    const typewriterText = document.querySelector('#home p');
+    const text = typewriterText.innerText;
+    let index = 0;
+    typewriterText.innerText = '';
+    
+    function typeWriter() {
+        if (index < text.length) {
+            typewriterText.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+
+    typeWriter();
+});
+  </script>
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Retro Kitsch Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <style> /* styles.css */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Comic Sans MS', 'Papyrus', sans-serif; /* Playful fonts */
+    background-color: #ffe4e1; /* Misty Rose background */
+    color: #333;
+    text-align: center; /* Center text for a more playful look */
+    background-image: url('https://www.publicdomainpictures.net/pictures/40000/velka/retro-bubble-background.jpg'); /* Fun retro background pattern */
+    background-size: cover;
+    background-attachment: fixed;
+    animation: backgroundScroll 20s linear infinite;
+}
+
+@keyframes backgroundScroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* Header Styling */
+header {
+    background-color: #ff69b4; /* Hot pink */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #ff1493; /* Deep pink border */
+    box-shadow: 0 0 20px #ff69b4;
+}
+
+header h1 {
+    font-size: 4em; /* Larger font size for the title */
+    text-shadow: 2px 2px #ff4500, 4px 4px #ff69b4; /* Layered text shadow */
+    animation: neon 1.5s infinite alternate;
+}
+
+nav ul {
+    list-style: none;
+    padding: 10px;
+    background-color: #00ffff; /* Aqua background */
+    border: 2px dashed #0000ff; /* Blue dashed border */
+    display: inline-block;
+    margin-top: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #0000ff; /* Blue text */
+    text-decoration: none;
+    font-size: 1.5em; /* Larger font size */
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    color: #ff4500; /* Orange on hover */
+}
+
+/* Main Content Styling */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffd700; /* Gold background */
+    border: 5px solid #008000; /* Green border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px #ffd700;
+}
+
+section h2 {
+    font-size: 3em;
+    color: #800080; /* Purple text */
+    text-shadow: 2px 2px #00ffff; /* Aqua text shadow */
+}
+
+section p {
+    font-size: 1.5em;
+    line-height: 1.5;
+    animation: colorChange 5s infinite;
+}
+
+@keyframes colorChange {
+    0%, 100% { color: #333; }
+    50% { color: #ff69b4; }
+}
+
+section img {
+    width: 150px;
+    height: auto;
+    border: 5px solid #ff1493; /* Deep pink border around images */
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 0 0 10px #ff69b4;
+}
+
+button {
+    background-color: #00ff00; /* Lime background */
+    color: #0000ff; /* Blue text */
+    border: 3px solid #ff4500; /* Orange border */
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px #00ff00;
+    animation: buttonGlow 2s infinite;
+}
+
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 10px #00ff00; }
+    50% { box-shadow: 0 0 20px #00ff00; }
+}
+
+button:hover {
+    background-color: #ff4500; /* Orange background on hover */
+    color: #fff; /* White text on hover */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #ff69b4; /* Hot pink */
+    color: white;
+    padding: 20px;
+    border-top: 5px solid #ff1493; /* Deep pink border */
+   
+ </style>
+  
+    <header>
+        <h1>Welcome to My Retro Kitsch Portfolio!</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>This is a fun site with a retro aesthetic, showcasing my graphic design work.</p>
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        </section>
+        <section id="portfolio">
+            <h2>Portfolio</h2>
+            <p>Here is a collection of my recent work.</p>
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        </section>
+        <section id="about">
+            <h2>About</h2>
+            <p>Learn more about me and my passion for graphic design.</p>
+            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Get in touch with me!</p>
+            <button>Click Me!</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 My Retro Kitsch Portfolio</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
